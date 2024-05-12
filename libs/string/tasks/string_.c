@@ -2,7 +2,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include <string.h>
-#include <memory.h>
+
 #include <stdlib.h>
 #include "string_.h"
 
@@ -291,7 +291,6 @@ void numToSpace(char *source) {
         }
     }
 
-    recPtr += sizeof(char);
     *recPtr = '\0';
 }
 
@@ -375,7 +374,7 @@ int isOrdered(char *source) {
         if (res > 0) {
             return 0;
         }
-        if (len1 > len2) {
+        if ((res == 0) && (len1 > len2)) {
             return 0;
         }
 
@@ -469,6 +468,7 @@ void getMixedString(char *res, char *s1, char *s2) {
 
 
     }
+    res -= sizeof(char);
     *res = '\0';
 }
 
@@ -486,7 +486,8 @@ void stringReverse(char *s) {
         *s = ' ';
         s += sizeof(char);
     }
-    getWordReverse()
+    s -= sizeof(char);
+    *s = '\0';
 }
 int hasWordLetter(WordDescriptor *word, char letter) {
     for (char *i = word->begin; i <= word->end; i += sizeof(char)) {
@@ -548,16 +549,7 @@ void printWordBeforeFirstWordWithA(char *s) {
     }
 }
 
-void assertString(const char *expected, char *got,char const *fileName, char const *funcName, int line) {
-    if (strcmp(expected, got)) {
-        fprintf(stderr, "File %s\n", fileName);
-        fprintf(stderr, "%s - failed on line %d\n", funcName, line);
-        fprintf(stderr, "Expected: \"%s\"\n", expected);
-        fprintf(stderr, "Got: \"%s\"\n\n", got);
-    } else {
-        fprintf(stderr, "%s - OK\n", funcName);
-    }
-}
+
 void findLastWord(char *s1, char *s2) {
     clearBagOfWords(&_bag);
     clearBagOfWords(&_bag2);
@@ -667,6 +659,7 @@ void getStringWithoutEndWords(char *s) {
             s += sizeof(char);
         }
     }
+    s -= sizeof(char);
     *s = '\0';
 }
 int findWordBefore(char *s1, char *s2, char *res) {
@@ -694,7 +687,7 @@ int findWordBefore(char *s1, char *s2, char *res) {
     return 0;
 }
 void deletePalindromes(char *s) {
-    copy(s, getEndOfString(s), _stringBuffer);
+    copy(s, getEndOfString(s) + sizeof (char), _stringBuffer);
     clearBagOfWords(&_bag);
     getBagOfWords(&_bag, _stringBuffer);
 
@@ -710,6 +703,7 @@ void deletePalindromes(char *s) {
             s += sizeof(char);
         }
     }
+    s -= sizeof(char);
     *s = '\0';
 }
 void appendMissingWords(char *s1, char *s2) {
