@@ -3,6 +3,11 @@
 #include <stdbool.h>
 #include <memory.h>
 #include "string_.h"
+
+char _stringBuffer[MAX_STRING_SIZE + 1];
+BagOfWords _bag;
+BagOfWords _bag2;
+
 size_t strlen_(char *begin) {
     char *end = begin;
     while (*end != '\0')
@@ -143,7 +148,7 @@ char* copyIfReverse(char *rbeginSource, const char *rendSource, char *beginDesti
 }
 //---------------------------------------------------------------------------------------------------------------
 
-char _stringBuffer[MAX_STRING_SIZE + 1];
+
 
 char* getEndOfString(const char *begin) {
     char *end = begin;
@@ -332,10 +337,16 @@ void getBagOfWords(BagOfWords *bag, char *s) {
 }
 
 void printBagOfWordsReverse(BagOfWords *bag) {
-    for (int i = bag->size - 1; i >= 0; i--) {
-        for (char *j = bag->words[i].begin; j <= bag->words[i].end; j++) {
-            printf("%c", j);
+    printWord(&bag->words[i]);
+}
+
+void clearBagOfWords(BagOfWords *bag) {
+    bag->size = 0;
+}
+
+void printWord(const WordDescriptor *word) {
+    for (char *j = word->begin; j <= word->end; j++) {
+        printf("%c", *j);
         }
-        printf("\n");
-    }
+    printf("\n");
 }
