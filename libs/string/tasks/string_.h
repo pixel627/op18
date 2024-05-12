@@ -23,5 +23,10 @@ int checkIfNotNum(int i);
 char* copyIf(char *beginSource, const char *endSource, char *beginDestination, int (*f)(int));
 
 char* copyIfReverse(char *rbeginSource, const char *rendSource, char *beginDestination, int (*f)(int));
+//---------------------------------------------------------------------------------------------------------------
+
+void removeNonLetters(char *s);
+
+void assertString(const char *expected, char *got, char const *fileName, char const *funcName, int line);
 
 #endif //LAB_STRING__H
