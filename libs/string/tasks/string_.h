@@ -66,7 +66,6 @@ void digitToStart(WordDescriptor word);
 
 void digitInWordShift2(WordDescriptor word);
 void digitToEnd(WordDescriptor word);
-void wordInStringProcessor2(char *beginString, void(*f)(WordDescriptor));
 
 void digitInWordShift2(WordDescriptor word);
 void digitToEnd(WordDescriptor word);
