@@ -104,8 +104,8 @@
 int main() {
     //    test();
 
-    char s[] = "abc def gd\0";
-    removeNonLetters(s);
+    char s[] = "aaaBcddd\0";
+    removeAdjacentEqualLetters(s);
     printf("%s", s);
 
     return 0;
